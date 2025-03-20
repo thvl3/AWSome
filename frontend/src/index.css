@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    @apply h-full bg-game-bg text-white;
+  }
+
+  #root {
+    @apply h-full;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-semibold transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-game-primary hover:bg-game-primary/80 text-black;
+  }
+
+  .btn-secondary {
+    @apply bg-game-secondary hover:bg-game-secondary/80;
+  }
+
+  .btn-accent {
+    @apply bg-game-accent hover:bg-game-accent/80;
+  }
+} 

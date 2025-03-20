@@ -1,0 +1,25 @@
+{
+  "name": "awsome-tank-shooter",
+  "version": "1.0.0",
+  "description": "A real-time multiplayer 2D tank shooter game",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend",
+    "infrastructure",
+    "shared"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.11.19",
+    "prettier": "^3.2.5",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/parser": "^7.0.1",
+    "@typescript-eslint/eslint-plugin": "^7.0.1"
+  }
+} 
