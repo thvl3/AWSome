@@ -5,18 +5,22 @@ export interface Vector2D {
 
 export interface Tank {
   id: string;
-  position: Vector2D;
-  angle: number; // turret angle in radians
+  name: string;
+  x: number;
+  y: number;
+  angle: number;
   health: number;
   score: number;
+  lastShot: number;
 }
 
 export interface Bullet {
   id: string;
+  x: number;
+  y: number;
+  angle: number;
   ownerId: string;
-  position: Vector2D;
-  angle: number; // direction in radians
-  speed: number;
+  createdAt: number;
 }
 
 export interface Wall {
@@ -27,7 +31,7 @@ export interface Wall {
 }
 
 export interface GameState {
-  tanks: Tank[];
+  players: Tank[];
   bullets: Bullet[];
   walls: Wall[];
   scores: Record<string, number>;
@@ -38,7 +42,7 @@ export interface PlayerInput {
   down: boolean;
   left: boolean;
   right: boolean;
-  turretAngle: number;
+  angle: number;
   shooting: boolean;
 }
 

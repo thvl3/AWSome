@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # Complete application with workspaces
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # Backend
+      - "3001:3001" # Frontend
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/*/node_modules
+    environment:
+      - NODE_ENV=development
+      - HOST=0.0.0.0
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    command: npm run start:server
+
+  # Frontend service for development
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173" # Vite dev server
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/*/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - app
+    command: sh -c "cd frontend && npm run dev -- --host 0.0.0.0"
+
+  # Nginx for production serving
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app
+      - frontend
+
+networks:
+  app-network:
+    driver: bridge 

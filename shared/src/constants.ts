@@ -1,13 +1,13 @@
 export const GAME_CONFIG = {
   // Tank settings
-  TANK_SPEED: 200, // pixels per second
+  TANK_SPEED: 150, // pixels per second
   TANK_ROTATION_SPEED: 3, // radians per second
   TANK_SIZE: 40, // pixels
   TANK_HEALTH: 3,
   TANK_RESPAWN_DELAY: 3000, // milliseconds
 
   // Bullet settings
-  BULLET_SPEED: 400, // pixels per second
+  BULLET_SPEED: 300, // pixels per second
   BULLET_SIZE: 8, // pixels
   BULLET_DAMAGE: 1,
   BULLET_LIFETIME: 2000, // milliseconds
@@ -19,8 +19,8 @@ export const GAME_CONFIG = {
   WALL_THICKNESS: 20, // pixels
 
   // Network settings
-  SERVER_TICK_RATE: 30, // ticks per second
-  CLIENT_INTERPOLATION_DELAY: 100, // milliseconds
+  SERVER_TICK_RATE: 60, // Increased from 30 to 60 ticks per second
+  CLIENT_INTERPOLATION_DELAY: 50, // Reduced from 100ms to 50ms for smoother interpolation
 
   // Game settings
   MAX_PLAYERS: 20,

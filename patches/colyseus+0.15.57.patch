@@ -1,0 +1,19 @@
+diff --git a/node_modules/colyseus/node_modules/@colyseus/core/build/rooms/RelayRoom.js b/node_modules/colyseus/node_modules/@colyseus/core/build/rooms/RelayRoom.js
+index 7e3c4ef..2eb72de 100644
+--- a/node_modules/colyseus/node_modules/@colyseus/core/build/rooms/RelayRoom.js
++++ b/node_modules/colyseus/node_modules/@colyseus/core/build/rooms/RelayRoom.js
+@@ -22,7 +22,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.RelayRoom = void 0;
+ const import_schema = require("@colyseus/schema");
+-const context = new import_schema.Context();
++
++// Fix for Context constructor issue
++let context;
++if (typeof import_schema.Context === 'function') {
++    context = new import_schema.Context();
++}
++
+ class RelayRoom extends Room_1.Room {
+     constructor() {
+         super(...arguments);

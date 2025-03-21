@@ -1,6 +1,6 @@
 import React from 'react';
 
 // Dummy component to satisfy type check
-export const GameScene = () => <div></div>;
+export const Bullet = () => <div></div>;
 
-export default GameScene; 
+export default Bullet; 

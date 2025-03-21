@@ -1,15 +1,14 @@
-import { useState } from 'react';
 import { Game } from '@/components/Game';
 import { StartMenu } from '@/components/StartMenu';
 import { useGameStore } from '@/stores/gameStore';
+import { useGameConnection } from '@/hooks/useGameConnection';
 
 export default function App() {
-  const [playerName, setPlayerName] = useState('');
   const isPlaying = useGameStore((state) => state.isPlaying);
+  const { connect } = useGameConnection();
 
   const handleStart = (name: string) => {
-    setPlayerName(name);
-    useGameStore.getState().startGame();
+    connect(name);
   };
 
   return (
@@ -17,7 +16,7 @@ export default function App() {
       {!isPlaying ? (
         <StartMenu onStart={handleStart} />
       ) : (
-        <Game playerName={playerName} />
+        <Game />
       )}
     </div>
   );

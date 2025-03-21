@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A real-time multiplayer 2D tank shooter game",
   "private": true,
+  "type": "module",
   "workspaces": [
     "frontend",
     "backend",
@@ -12,14 +13,29 @@
   "scripts": {
     "build": "npm run build --workspaces",
     "test": "npm run test --workspaces",
-    "lint": "npm run lint --workspaces"
+    "lint": "npm run lint --workspaces",
+    "dev": "npm run dev --workspaces --parallel",
+    "start:server": "node --loader ts-node/esm --experimental-specifier-resolution=node server/index.ts",
+    "postinstall": "npx patch-package"
   },
   "devDependencies": {
-    "typescript": "^5.3.3",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
     "@types/node": "^20.11.19",
-    "prettier": "^3.2.5",
-    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
-    "@typescript-eslint/eslint-plugin": "^7.0.1"
+    "eslint": "^8.56.0",
+    "patch-package": "^8.0.0",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@colyseus/schema": "^2.0.16",
+    "@colyseus/ws-transport": "^0.15.3",
+    "colyseus": "^0.15.57",
+    "colyseus.js": "^0.15.13",
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
   }
-} 
+}
